@@ -1,0 +1,54 @@
+<?php
+/**
+ * @file
+ * Code for the "name of feature" feature.
+ */
+
+include_once 'name_of_feature.features.inc';
+
+/**
+ * Implements hook_block_info().
+ */
+function name_of_feature_identifier_block_info() {
+  return array(
+    'example_one' => array(
+      'info' => t('Name in blocks for example number one!'),
+      'cache' => DRUPAL_CACHE_GLOBAL,
+    ),
+    'example_two' => array(
+      'info' => t('Name in blocks for example number two!'),
+      'cache' => DRUPAL_CACHE_GLOBAL,
+    ),
+  );
+}
+/**
+ * Implements hook_block_view().
+ */
+function name_of_feature_block_view($delta) {
+  $block = array();
+  switch ($delta) {
+    case 'example_one':
+      $block['subject'] = t('Title for example one.');
+      $block['content'] = name_of_feature_example_one_get_information_block();
+      break;
+    case 'example_two':
+      $block['subject'] = t('Title for example two.');
+      $block['content'] = name_of_feature_example_two_get_information_block();
+      break;
+  }
+  return $block;
+}
+/**
+ * Get for information of the contact block.
+ */
+function name_of_feature_example_one_get_information_block() {
+  return '<p>' . t('Example one text') . '</p>';
+}
+
+
+/**
+ * Get for information of the who we are block.
+ */
+function name_of_feature_example_two_get_information_block() {
+  return '<p>' . t('Example two text.') . '</p>';
+}
